@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2020
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "swimming-pi", "swimming-pi\swimming-pi.pyproj", "{FFCBAA76-F6AA-4957-B4CC-19C8F6B345AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFCBAA76-F6AA-4957-B4CC-19C8F6B345AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFCBAA76-F6AA-4957-B4CC-19C8F6B345AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2D2BC73C-7660-44CF-B90E-C36B8BD89921}
+	EndGlobalSection
+EndGlobal

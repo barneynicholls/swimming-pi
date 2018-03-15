@@ -1,0 +1,64 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>ffcbaa76-f6aa-4957-b4cc-19c8f6b345aa</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>main.py</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <Name>swimming-pi</Name>
+    <RootNamespace>swimming-pi</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="displays\i2c1602.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="displays\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mocks\rpidevmocks.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mocks\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sensors\ds18b20.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sensors\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="swimming_pi.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="C:\Users\barneynicholls\source\repos\swimming-pi\swimming-pi\displays\" />
+    <Folder Include="C:\Users\barneynicholls\source\repos\swimming-pi\swimming-pi\tests\" />
+    <Folder Include="displays\" />
+    <Folder Include="mocks\" />
+    <Folder Include="sensors\" />
+    <Folder Include="tests\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <!-- Uncomment the CoreCompile target to enable the Build command in
+       Visual Studio and specify your pre- and post-build commands in
+       the BeforeBuild and AfterBuild targets below. -->
+  <!--<Target Name="CoreCompile" />-->
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+</Project>
