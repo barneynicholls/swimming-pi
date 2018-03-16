@@ -34,8 +34,8 @@ def main():
 
         currentTemp = "Temp: %.2fc" % temp
         currentTime = strftime("%H:%M:%S", gmtime()) 
-        display.lcd_string(currentTemp,1)
-        display.lcd_string(currentTime,2)
+        display.lcd_string(currentTemp,0x80)
+        display.lcd_string(currentTime,0xC0)
 
         time.sleep(1)
   
@@ -49,8 +49,8 @@ def main():
 
         currentTemp = "Min: %.2f Max: %.2f" % (min_temp, max_temp)
         currentTime = strftime("%H:%M:%S", gmtime()) 
-        display.lcd_string(currentTemp,1)
-        display.lcd_string(currentTime,2)
+        display.lcd_string(currentTemp,0x80)
+        display.lcd_string(currentTime,0xC0)
 
         time.sleep(1)
 

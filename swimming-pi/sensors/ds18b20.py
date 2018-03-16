@@ -22,7 +22,7 @@ class ds18b20(object):
             logging.warn("failed to initialise as expected")
 
     def read_temp_raw(self):
-        f = open(device_file, 'r')
+        f = open(self.device_file, 'r')
         lines = f.readlines()
         f.close()
         return lines
