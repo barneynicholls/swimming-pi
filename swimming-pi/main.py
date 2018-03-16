@@ -25,11 +25,11 @@ def main():
     while True:
 
         temp = sensor.read()
-        max_temp = max(max_temp,temp)
-        min_temp = min(min_temp,temp)
+        max_temp = float(max(max_temp,temp))
+        min_temp = float(min(min_temp,temp))
 
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2f\n' % (strftime("%H:%M:%S", gmtime()), temp)
+            line = '%s  %.2f\n' % (strftime("%H:%M:%S", gmtime()), float(temp))
             the_file.write(line)
 
         currentTemp = "Temp: %.2fc" % temp
@@ -40,11 +40,11 @@ def main():
         time.sleep(1)
   
         temp = sensor.read()
-        max_temp = max(max_temp,temp)
-        min_temp = min(min_temp,temp)
+        max_temp = float(max(max_temp,temp))
+        min_temp = float(min(min_temp,temp))
 
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2f\n' % (strftime("%H:%M:%S", gmtime()), temp)
+            line = '%s  %.2f\n' % (strftime("%H:%M:%S", gmtime()), float(temp))
             the_file.write(line)
 
         currentTemp = "Min: %.2f Max: %.2f" % (min_temp, max_temp)
