@@ -16,7 +16,7 @@ class ds18b20(object):
             os.system('modprobe w1-therm')
             self.device_folder = glob.glob(self.base_dir + '28*')[0]
             logging.info("device_folder: %s",self.device_folder)
-            self.device_file = device_folder + '/w1_slave'
+            self.device_file = self.device_folder + '/w1_slave'
             logging.info("device_file: %s",self.device_file)
         except:
             logging.warn("failed to initialise as expected")
