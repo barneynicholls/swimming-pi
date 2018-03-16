@@ -3,7 +3,9 @@ try:
 except ImportError:
     from mocks import Mock_smbusModule
     smbus = Mock_smbusModule()
+
 import time
+import logging
 
 class i2c1602(object):
     """display text on 16 x 2 lcd display"""
@@ -74,6 +76,8 @@ class i2c1602(object):
 
         for i in range(self.LCD_WIDTH):
             self.lcd_byte(ord(message[i]),self.LCD_CHR)
+
+        logging.info("display '%s' on line %s",message,line)
 
     def __init__(self):
         #Open I2C interface

@@ -45,8 +45,6 @@
     <Compile Include="swimming_pi.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="C:\Users\barneynicholls\source\repos\swimming-pi\swimming-pi\displays\" />
-    <Folder Include="C:\Users\barneynicholls\source\repos\swimming-pi\swimming-pi\tests\" />
     <Folder Include="displays\" />
     <Folder Include="mocks\" />
     <Folder Include="sensors\" />
