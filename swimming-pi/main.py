@@ -37,7 +37,7 @@ def main():
         display.lcd_stringL1(currentTemp)
         display.lcd_stringL2(curr_time)
 
-        time.sleep(1)
+        time.sleep(0.5)
   
         temp = sensor.read()
         max_temp = max(max_temp,temp)
@@ -52,7 +52,7 @@ def main():
         display.lcd_stringL1(minMax)
         display.lcd_stringL2(curr_time)
 
-        time.sleep(1)
+        time.sleep(0.5)
 
     logging.info('Finished')
 
