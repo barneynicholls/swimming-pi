@@ -27,6 +27,7 @@ def main():
         temp = sensor.read()
         max_temp = max(max_temp,temp)
         min_temp = min(min_temp,temp)
+
         curr_time = strftime("%H:%M:%S", gmtime())
 
         with open('temperature_log.txt', 'a') as the_file:
@@ -41,7 +42,7 @@ def main():
 
         minMax = "L:{: 5.1f}  H:{: 5.1f}".format(min_temp, max_temp)
         display.lcd_stringL1(minMax)
-        display.lcd_stringL2(curr_time)
+        display.lcd_stringL2(strftime("%H:%M:%S", gmtime()))
 
         time.sleep(0.5)
 
