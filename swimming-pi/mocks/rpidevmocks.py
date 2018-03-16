@@ -48,7 +48,7 @@ import math
 class MockSMBus(object):
     ''' Mock of smbus.SMBus() class '''
     mpu_adr = 0x68
-    lcd_adr = 0x27
+    lcd_adr = 0x3f
     pwr_mgt_1 = 0x6b
     ## HIGH byte registers for MPU-6050, value+1 for LOW registers
     accel_x = 0x3b

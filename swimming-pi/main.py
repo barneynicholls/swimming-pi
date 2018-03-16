@@ -29,7 +29,7 @@ def main():
         min_temp = min(min_temp,temp)
 
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2f\n' % (strftime("%H:%M:%S", gmtime()), float(temp))
+            line = '%s  %.2d\n' % (strftime("%H:%M:%S", gmtime()), temp)
             the_file.write(line)
 
         currentTemp = "Temp: %.2fc" % temp
@@ -44,7 +44,7 @@ def main():
         min_temp = min(min_temp,temp)
 
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2f\n' % (strftime("%H:%M:%S", gmtime()), float(temp))
+            line = '%s  %.2d\n' % (strftime("%H:%M:%S", gmtime()), temp)
             the_file.write(line)
 
         currentTemp = "Min: %.2f Max: %.2f" % (min_temp, max_temp)
