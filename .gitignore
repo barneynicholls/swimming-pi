@@ -99,3 +99,4 @@ ENV/
 
 # mypy
 .mypy_cache/
+/swimming-pi/temperature_log.txt
