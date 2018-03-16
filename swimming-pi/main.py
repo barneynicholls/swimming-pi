@@ -43,7 +43,7 @@ def main():
         display.lcd_stringL1(minMax)
         display.lcd_stringL2(curr_time)
 
-        time.sleep(0.3)
+        time.sleep(0.5)
 
     logging.info('Finished')
 
