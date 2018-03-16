@@ -46,4 +46,7 @@ class ds18b20(object):
             logging.info("temperature %f", temp)
         except:
             logging.warn("failed to read temperature")
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            logging.warn(lines)
             return -1000
