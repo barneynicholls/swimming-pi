@@ -27,13 +27,13 @@ def main():
         temp = sensor.read()
         max_temp = max(max_temp,temp)
         min_temp = min(min_temp,temp)
+        curr_time = strftime("%H:%M:%S", gmtime())
 
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2d\n' % (strftime("%H:%M:%S", gmtime()), temp)
+            line = '%s  %.2d\n' % (curr_time, temp)
             the_file.write(line)
 
         currentTemp = "Temp: %.2fc" % temp
-        currentTime = strftime("%H:%M:%S", gmtime()) 
         display.lcd_string(currentTemp,0x80)
         #display.lcd_string(currentTime,0xC0)
 
@@ -42,14 +42,14 @@ def main():
         temp = sensor.read()
         max_temp = max(max_temp,temp)
         min_temp = min(min_temp,temp)
+        curr_time = strftime("%H:%M:%S", gmtime())
 
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2d\n' % (strftime("%H:%M:%S", gmtime()), temp)
+            line = '%s  %.2d\n' % (curr_time, temp)
             the_file.write(line)
 
-        currentTemp = "Min: %.2f Max: %.2f" % (min_temp, max_temp)
-        currentTime = strftime("%H:%M:%S", gmtime()) 
-        display.lcd_string(currentTemp,0x80)
+        minMax = "Min: %.2f Max: %.2f" % (min_temp, max_temp)
+        display.lcd_string(minMax,0x80)
         #display.lcd_string(currentTime,0xC0)
 
         time.sleep(1)
