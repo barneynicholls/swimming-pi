@@ -79,6 +79,12 @@ class i2c1602(object):
 
         logging.info("display '%s' on line %s",message,line)
 
+    def lcd_stringL1(self, message):
+        self.lcd_string(message,self.LCD_LINE_1)
+
+    def lcd_stringL2(self, message):
+        self.lcd_string(message,self.LCD_LINE_2)
+
     def __init__(self):
         #Open I2C interface
         #bus = smbus.SMBus(0)  # Rev 1 Pi uses 0

@@ -33,9 +33,9 @@ def main():
             line = '%s  %.2f\n' % (curr_time, temp)
             the_file.write(line)
 
-        currentTemp = "Temp: %.2fc" % temp
-        display.lcd_string(currentTemp,0x80)
-        #display.lcd_string(currentTime,0xC0)
+        currentTemp = "Temp:{: 10.2f}c".format(temp)
+        display.lcd_stringL1(currentTemp)
+        display.lcd_stringL2(curr_time)
 
         time.sleep(1)
   
@@ -48,9 +48,9 @@ def main():
             line = '%s  %.2f\n' % (curr_time, temp)
             the_file.write(line)
 
-        minMax = "Min: %.2f Max: %.2f" % (min_temp, max_temp)
-        display.lcd_string(minMax,0x80)
-        #display.lcd_string(currentTime,0xC0)
+        minMax = "L:{: 5.1f}  H:{: 5.1f}".format(min_temp, max_temp)
+        display.lcd_stringL1(minMax)
+        display.lcd_stringL2(curr_time)
 
         time.sleep(1)
 
