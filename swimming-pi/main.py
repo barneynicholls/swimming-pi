@@ -28,21 +28,19 @@ def main():
         max_temp = max(max_temp,temp)
         min_temp = min(min_temp,temp)
 
-        curr_time = strftime("%H:%M:%S", gmtime())
-
         with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2f\n' % (curr_time, temp)
+            line = '%s  %.2f\n' % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), temp)
             the_file.write(line)
 
         currentTemp = "Temp:{: 10.2f}c".format(temp)
-        display.lcd_stringL1(currentTemp)
-        display.lcd_stringL2(curr_time)
+        display.lcd_line1(currentTemp)
+        display.lcd_line2(strftime("%H:%M:%S", gmtime()))
 
         time.sleep(0.5)
 
         minMax = "L:{: 5.1f}  H:{: 5.1f}".format(min_temp, max_temp)
-        display.lcd_stringL1(minMax)
-        display.lcd_stringL2(strftime("%H:%M:%S", gmtime()))
+        display.lcd_line1(minMax)
+        display.lcd_line2(strftime("%H:%M:%S", gmtime()))
 
         time.sleep(0.5)
 

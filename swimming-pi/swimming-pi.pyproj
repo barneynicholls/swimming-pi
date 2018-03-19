@@ -42,7 +42,6 @@
     <Compile Include="sensors\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="swimming_pi.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="displays\" />
