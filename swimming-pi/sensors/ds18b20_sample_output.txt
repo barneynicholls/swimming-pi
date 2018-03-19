@@ -1,0 +1,2 @@
+sample ds18b20 YES
+and the temp t=12345

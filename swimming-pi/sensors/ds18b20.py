@@ -21,7 +21,8 @@ class ds18b20(object):
             self.device_file = self.device_folder + '/w1_slave'
             logging.info("device_file: %s",self.device_file)
         except:
-            logging.warn("failed to initialise as expected")
+            logging.warn("failed to initialise as expected. assuming in test mode")
+            self.device_file ="sensors/ds18b20_sample_output.txt"
 
     def read_temp_raw(self):
         f = open(self.device_file, 'r')
