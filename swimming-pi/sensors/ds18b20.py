@@ -53,4 +53,4 @@ class ds18b20(object):
             exc_type, exc_value, exc_traceback = sys.exc_info()
             lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
             logging.warn(lines)
-            return 1.156
+            return -1000

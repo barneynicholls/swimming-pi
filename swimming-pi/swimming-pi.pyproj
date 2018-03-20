@@ -30,6 +30,9 @@
     <Compile Include="main.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="mocks\gpsmocks.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="mocks\rpidevmocks.py">
       <SubType>Code</SubType>
     </Compile>
@@ -37,6 +40,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sensors\ds18b20.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="sensors\gy-neo6mv2.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="sensors\__init__.py">
