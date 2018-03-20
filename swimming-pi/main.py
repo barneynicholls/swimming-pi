@@ -2,7 +2,7 @@ import logging
 import logging.handlers
 import time
 from time import gmtime, strftime
-from sensors import ds18b20
+from sensors import ds18b20, gyneo6mv2
 from displays import i2c1602
 
 
@@ -17,6 +17,7 @@ def main():
     logging.info('Started')
 
     sensor = ds18b20()
+    gps = gyneo6mv2()
     display = i2c1602()
 
     max_temp = -2000.0
@@ -25,6 +26,10 @@ def main():
     while True:
 
         temp = sensor.read()
+        lat, lon = gps.read()
+
+        display.lcd_line1("Lat:{: 5.1f}  Lon:{: 5.1f}".format(lat,lon))
+
         max_temp = max(max_temp,temp)
         min_temp = min(min_temp,temp)
 

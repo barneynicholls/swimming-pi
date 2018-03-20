@@ -1,6 +1,6 @@
 class MockGPS(object):
-    self.WATCH_ENABLE = 1
-    self.WATCH_NEWSTYLE = 2
+    WATCH_ENABLE = 1
+    WATCH_NEWSTYLE = 2
 
     """mock gps"""
     def gps(self,host,port):
