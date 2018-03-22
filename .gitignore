@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 *.suo
+.suo
 
 # Distribution / packaging
 .Python
@@ -102,3 +103,4 @@ ENV/
 .mypy_cache/
 /swimming-pi/temperature_log.txt
 /swimming-pi/swimming-pi.pyproj.user
+/swimming-pi/sensor_log.txt

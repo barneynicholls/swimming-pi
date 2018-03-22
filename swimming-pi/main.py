@@ -20,34 +20,17 @@ def main():
     gps = gyneo6mv2()
     display = i2c1602()
 
-    max_temp = -2000.0
-    min_temp = 2000.0
-
     while True:
 
         temp = sensor.read()
-        lat, lon = gps.read()
+        lat, lon, curr_time = gps.read()
 
-        display.lcd_line1("Lat:{: 5.1f}  Lon:{: 5.1f}".format(lat,lon))
+        display.lcd_line1("POS:{: 5.2f}, {: 5.2f}".format(lat,lon))
+        display.lcd_line2("{:}{: 10.2f}c".format(strftime("%H:%M:%S", curr_time) , temp))
 
-        max_temp = max(max_temp,temp)
-        min_temp = min(min_temp,temp)
-
-        with open('temperature_log.txt', 'a') as the_file:
-            line = '%s  %.2f\n' % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), temp)
+        with open('sensor_log.txt', 'a') as the_file:
+            line = '%s,%.2f,%.5f,%.5f\n' % (strftime("%Y-%m-%d %H:%M:%S",curr_time), temp, lat, lon)
             the_file.write(line)
-
-        currentTemp = "Temp:{: 10.2f}c".format(temp)
-        display.lcd_line1(currentTemp)
-        display.lcd_line2(strftime("%H:%M:%S", gmtime()))
-
-        time.sleep(0.5)
-
-        minMax = "L:{: 5.1f}  H:{: 5.1f}".format(min_temp, max_temp)
-        display.lcd_line1(minMax)
-        display.lcd_line2(strftime("%H:%M:%S", gmtime()))
-
-        time.sleep(0.5)
 
     logging.info('Finished')
 

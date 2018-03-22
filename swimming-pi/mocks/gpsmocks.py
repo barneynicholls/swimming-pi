@@ -1,3 +1,5 @@
+import random
+
 class MockGPS(object):
     WATCH_ENABLE = 1
     WATCH_NEWSTYLE = 2
@@ -16,8 +18,14 @@ class MockGPSSession(object):
 
     """mock session stream next() method"""
     def next(self):
-        return (10,20)
+        return MockGPSReport()
+
+class MockGPSReport(object):
 
 
-#import gpxpy
-#import gpxpy.gpx
+
+    def __init__(self):
+        random.seed()
+        self.lat = random.randint(-900000,900000) / 10000
+        self.lon = random.randint(-1800000,1800000) / 10000
+

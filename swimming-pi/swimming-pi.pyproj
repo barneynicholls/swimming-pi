@@ -53,7 +53,6 @@
     <Folder Include="displays\" />
     <Folder Include="mocks\" />
     <Folder Include="sensors\" />
-    <Folder Include="tests\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="sensors\ds18b20_sample_output.txt" />

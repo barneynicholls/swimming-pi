@@ -6,11 +6,14 @@ except ImportError:
     from mocks import MockGPS
     gps = MockGPS()
 import logging
+import time
+from time import gmtime
 
 class gyneo6mv2(object):
 
     def read(self):
-        return (-50.12345,5.6789)
+        report = self.session.next()
+        return (report.lat, report.lon, gmtime())
 
     def __init__(self):
         #Listen on port 2947 of gpsd
