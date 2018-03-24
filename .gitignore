@@ -1,3 +1,5 @@
+sensor_log.txt
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -104,3 +106,4 @@ ENV/
 /swimming-pi/temperature_log.txt
 /swimming-pi/swimming-pi.pyproj.user
 /swimming-pi/sensor_log.txt
+sensor_log.txt

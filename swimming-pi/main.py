@@ -25,8 +25,9 @@ def main():
         temp = sensor.read()
         lat, lon, curr_time = gps.read()
 
-        display.lcd_line1("POS:{: 5.2f}, {: 5.2f}".format(lat,lon))
-        display.lcd_line2("{:}{: 10.2f}c".format(strftime("%H:%M:%S", curr_time) , temp))
+        #display.lcd_line1("POS:{: 5.2f}, {: 5.2f}".format(lat,lon))
+        display.lcd_line1("SWIMMING-PI")
+        display.lcd_line2("{:}{: 7.2f}c".format(strftime("%H:%M:%S", curr_time) , temp))
 
         with open('sensor_log.txt', 'a') as the_file:
             line = '%s,%.2f,%.5f,%.5f\n' % (strftime("%Y-%m-%d %H:%M:%S",curr_time), temp, lat, lon)
