@@ -17,8 +17,7 @@ class gyneo6mv2(object):
 
     def __init__(self):
         #Listen on port 2947 of gpsd
-        self.session = gps.gps()
-        #self.session = gps.gps("localhost", "2947")
+        self.session = gps.gps("localhost", "2947")
         self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
     
     def read(self):
