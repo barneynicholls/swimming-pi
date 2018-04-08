@@ -30,7 +30,7 @@ def main():
         #display.lcd_line2("{:}{: 7.2f}c".format(strftime("%H:%M:%S", curr_time) , temp))
 
         with open('sensor_log.txt', 'a') as the_file:
-            line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon)
+            line = '%s,%s,%s,%s\n' % (curr_time, temp, lat, lon)
             # line = '%s,%.2f,%.5f,%.5f\n' % (strftime("%Y-%m-%d %H:%M:%S",curr_time), temp, lat, lon)
             the_file.write(line)
 
