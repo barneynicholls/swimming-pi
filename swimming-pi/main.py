@@ -17,13 +17,13 @@ def main():
     logging.info('Started')
 
     sensor = ds18b20()
-    gps = gyneo6mv2()
+    gps_sensor = gyneo6mv2()
     display = i2c1602()
 
     while True:
 
         temp = sensor.read()
-        lat, lon, speed, alt, curr_time = gps.read()
+        lat, lon, speed, alt, curr_time = gps_sensor.read()
 
         #display.lcd_line1("POS:{: 5.2f}, {: 5.2f}".format(lat,lon))
         #display.lcd_line1("SWIMMING-PI")
