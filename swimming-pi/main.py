@@ -25,13 +25,11 @@ def main():
         temp = sensor.read()
         lat, lon, speed, curr_time = gps_sensor.read()
 
-        #display.lcd_line1("POS:{: 5.2f}, {: 5.2f}".format(lat,lon))
-        #display.lcd_line1("SWIMMING-PI")
-        #display.lcd_line2("{:}{: 7.2f}c".format(strftime("%H:%M:%S", curr_time) , temp))
+        display.lcd_line1("POS:{: 3.3f}, {: 3.3f}".format(lat,lon))
+        display.lcd_line2("{:}{: 7.2f}c".format(strftime("%H:%M:%S", gmtime()) , temp))
 
         with open('sensor_log.txt', 'a') as the_file:
             line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
-            # line = '%s,%.2f,%.5f,%.5f\n' % (strftime("%Y-%m-%d %H:%M:%S",curr_time), temp, lat, lon)
             the_file.write(line)
 
     logging.info('Finished')
@@ -39,5 +37,7 @@ def main():
 if __name__ == '__main__':
     try:
         main()
-    except KeyboardInterrupt:
+    except KeyError:
         pass
+    except KeyboardInterrupt:
+        quit()
