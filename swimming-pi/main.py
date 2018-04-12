@@ -28,9 +28,10 @@ def main():
         display.lcd_line1("POS:{: 3.3f}, {: 3.3f}".format(lat,lon))
         display.lcd_line2("{:}{: 7.2f}c".format(strftime("%H:%M:%S", gmtime()) , temp))
 
-        with open('sensor_log.txt', 'a') as the_file:
-            line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
-            the_file.write(line)
+        if lat != 0:
+            with open('sensor_log.txt', 'a') as the_file:
+                line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
+                the_file.write(line)
 
     logging.info('Finished')
 
