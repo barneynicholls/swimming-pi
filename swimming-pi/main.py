@@ -20,6 +20,8 @@ def main():
     gps_sensor = gyneo6mv2()
     display = i2c1602()
 
+    showpos = False;
+
     while True:
 
         temp = sensor.read()
@@ -29,7 +31,11 @@ def main():
         lat, lon, speed, curr_time = gps_sensor.read()
 
         if lat != 0:
-            display.lcd_line2("{:3.3f}, {:3.3f}".format(lat,lon))
+            if showpos:
+                display.lcd_line2("{:3.3f}, {:3.3f}".format(lat,lon))
+            else:
+                display.lcd_line2("{:3.3f}kmh".format(speed))
+            showpos = not showpos
             with open('sensor_log.txt', 'a') as the_file:
                 line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
                 the_file.write(line)
