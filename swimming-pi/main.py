@@ -23,12 +23,13 @@ def main():
     while True:
 
         temp = sensor.read()
-        lat, lon, speed, curr_time = gps_sensor.read()
-
-        display.lcd_line1("POS:{: 3.3f}, {: 3.3f}".format(lat,lon))
+        
         display.lcd_line2("{:}{: 7.2f}c".format(strftime("%H:%M:%S", gmtime()) , temp))
 
+        lat, lon, speed, curr_time = gps_sensor.read()
+
         if lat != 0:
+            display.lcd_line2("POS:{: 3.3f}, {: 3.3f}".format(lat,lon))
             with open('sensor_log.txt', 'a') as the_file:
                 line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
                 the_file.write(line)
