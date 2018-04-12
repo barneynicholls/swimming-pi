@@ -20,7 +20,7 @@ class gyneo6mv2(object):
         self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
     
     def read(self):
-        result = (0.0,0.0,0.0,0.0, datetime.datetime.utcnow().isoformat())
+        result = (0.0,0.0,0.0, datetime.datetime.utcnow().isoformat())
         try:
             report = self.session.next();
             if report is not None and report['class'] == 'TPV':
