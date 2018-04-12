@@ -29,7 +29,7 @@ def main():
         lat, lon, speed, curr_time = gps_sensor.read()
 
         if lat != 0:
-            display.lcd_line2("{: 3.3f},s{: 3.3f}".format(lat,lon))
+            display.lcd_line2("{:3.3f}, {:3.3f}".format(lat,lon))
             with open('sensor_log.txt', 'a') as the_file:
                 line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
                 the_file.write(line)
