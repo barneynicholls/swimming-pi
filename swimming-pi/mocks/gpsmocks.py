@@ -30,7 +30,6 @@ class MockGPSReport(object):
         self.lat = random.randint(-900000,900000) / 10000
         self.lon = random.randint(-1800000,1800000) / 10000
         self.speed = random.randint(0,100000) / 10000
-        self.alt = random.randint(0,100000) / 10000
         self.time = datetime.datetime.utcnow().isoformat()
         self.Items = { "class" : "TPV"}
 

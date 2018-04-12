@@ -24,7 +24,7 @@ class gyneo6mv2(object):
         try:
             report = self.session.next();
             if report is not None and report['class'] == 'TPV':
-                return (report.lat, report.lon, report.speed * gps.MPS_TO_KPH, report.altitude, report.time)
+                return (report.lat, report.lon, report.speed * gps.MPS_TO_KPH, report.time)
             return result
         except Exception as e:
             logging.error(str(e))
