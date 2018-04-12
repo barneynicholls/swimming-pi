@@ -1,7 +1,6 @@
 try:
+    import datetime
     import gps
-    import gpxpy
-    import gpxpy.gpx
 except ImportError:
     from mocks import MockGPS
     gps = MockGPS()
@@ -21,11 +20,13 @@ class gyneo6mv2(object):
         self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
     
     def read(self):
-        result = (0,0,0)
+        result = (0.0,0.0,0.0,0.0, datetime.datetime.utcnow().isoformat())
         try:
             report = self.session.next();
-            return (report.lat, report.lon, report.time)
-        except:
+            if report['class'] == 'TPV':
+                return (report.lat, report.lon, report.speed * gps.MPS_TO_KPH, report.alt, report.time)
+        except Exception as e:
+            logging.error(str(e))
             return result
 
     #def read(self):
