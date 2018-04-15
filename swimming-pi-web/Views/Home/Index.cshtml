@@ -1,0 +1,261 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<br />
+<h1>Sensor Log Upload</h1>
+<hr />
+
+<div class="row">
+    <div class="col-md-6 col-sm-12">
+        <div class="drop-area">
+            <h3>Drop files here</h3>
+            <div class="btn btn-primary btn-block mb-5">
+                <span>Open the file Browser</span>
+                <input type="file" title="Click to add Files" multiple="">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="card h-100">
+            <div class="card-header">
+                File List
+            </div>
+
+            <ul class="list-unstyled p-2 d-flex flex-column col" id="files">
+                <li class="text-muted text-center empty">No files uploaded.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr>
+<div id="map"></div>
+
+
+
+
+
+@section scripts{
+
+    <script type="text/html" id="files-template">
+        <li class="media">
+
+            <img class="mr-3 mb-2 preview-img" src="https://danielmg.org/assets/image/noimage.jpg?v=v10">
+
+            <div class="media-body mb-1">
+                <p class="mb-2">
+                    <strong>%%filename%%</strong> - Status: <span class="text-muted">Waiting</span>
+                </p>
+                <div class="progress mb-2">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary"
+                         role="progressbar"
+                         style="width: 0%"
+                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    </div>
+                </div>
+
+                <hr class="mt-1 mb-1" />
+            </div>
+        </li>
+    </script>
+    <script>
+
+        // This example requires the Visualization library. Include the libraries=visualization
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=visualization">
+
+        var map, heatmap;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: { lat: 50.1795, lng: -4.9758 },
+                mapTypeId: 'satellite'
+            });
+
+            heatmap = new google.maps.visualization.HeatmapLayer({
+                data: getPoints(),
+                map: map
+            });
+        }
+
+
+        function convertReadings(data) {
+
+            // changeGradient();
+
+            var bounds = new google.maps.LatLngBounds();
+
+            data.forEach(function (x) {
+
+                var loc = new google.maps.LatLng(x.lat, x.lon);
+                bounds.extend(loc);
+
+                var cityCircle = new google.maps.Circle({
+                    strokeColor: GetGradientColour(x.speedWeight),
+                    strokeOpacity: 0.2,
+                    strokeWeight: 1,
+                    fillColor: GetGradientColour(x.speedWeight),
+                    fillOpacity: 0.8,
+                    map: map,
+                    center: new google.maps.LatLng(x.lat, x.lon),
+                    radius:  x.speedWeight 
+                });
+
+            })
+
+            //var points = data.map(x => {
+            //    //var loc = new google.maps.LatLng(x.lat, x.lon);
+            //    //bounds.extend(loc);
+            //   /// return { location: loc, weight: x.speedWeight }
+
+
+            //});
+
+            //heatmap.setData(points);
+
+            map.fitBounds(bounds);
+            map.panToBounds(bounds);
+        }
+
+        function GetGradientColour(weight) {
+            var gradient = [
+                'rgba(0, 255, 255, 0)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(0, 191, 255, 1)',
+                'rgba(0, 127, 255, 1)',
+                'rgba(0, 63, 255, 1)',
+                'rgba(0, 0, 255, 1)',
+                'rgba(0, 0, 223, 1)',
+                'rgba(0, 0, 191, 1)',
+                'rgba(0, 0, 159, 1)',
+                'rgba(0, 0, 127, 1)',
+                'rgba(63, 0, 91, 1)',
+                'rgba(127, 0, 63, 1)',
+                'rgba(191, 0, 31, 1)',
+                'rgba(255, 0, 0, 1)'
+            ]
+            return gradient[weight];
+        }
+
+
+        function toggleHeatmap() {
+            heatmap.setMap(heatmap.getMap() ? null : map);
+        }
+
+        function changeGradient() {
+            var gradient = [
+                'rgba(0, 255, 255, 0)',
+                'rgba(0, 255, 255, 1)',
+                'rgba(0, 191, 255, 1)',
+                'rgba(0, 127, 255, 1)',
+                'rgba(0, 63, 255, 1)',
+                'rgba(0, 0, 255, 1)',
+                'rgba(0, 0, 223, 1)',
+                'rgba(0, 0, 191, 1)',
+                'rgba(0, 0, 159, 1)',
+                'rgba(0, 0, 127, 1)',
+                'rgba(63, 0, 91, 1)',
+                'rgba(127, 0, 63, 1)',
+                'rgba(191, 0, 31, 1)',
+                'rgba(255, 0, 0, 1)'
+            ]
+            heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+        }
+
+        function changeRadius() {
+            heatmap.set('radius', heatmap.get('radius') ? null : 20);
+        }
+
+        function changeOpacity() {
+            heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+        }
+
+        // Heatmap data: 500 Points
+        function getPoints() {
+            return [];
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChN_-JgqYRrymuH_ynr9TjHjPmW7fVgkk&libraries=visualization&callback=initMap">
+    </script>
+    <script>
+        $(function () {
+
+            $('.drop-area').dmUploader({
+                url: 'UploadFiles',
+                maxFileSize: 3000000, // 3 Megs max
+                allowedTypes: 'image/*||text/*',
+                extFilter: ['jpg', 'jpeg', 'log', 'txt'],
+                onDragEnter: function () {
+                    // Happens when dragging something over the DnD area
+                    this.addClass('active');
+                },
+                onDragLeave: function () {
+                    // Happens when dragging something OUT of the DnD area
+                    this.removeClass('active');
+                },
+                onInit: function () {
+                    // Plugin is ready to use
+                    ui_add_log('Penguin initialized :)', 'info');
+                },
+                onComplete: function () {
+                    // All files in the queue are processed (success or error)
+                    ui_add_log('All pending tranfers finished');
+                },
+                onNewFile: function (id, file) {
+                    // When a new file is added using the file selector or the DnD area
+                    ui_add_log('New file added #' + id);
+                    ui_multi_add_file(id, file);
+
+                    if (typeof FileReader !== "undefined") {
+                        var reader = new FileReader();
+                        var img = $('#uploaderFile' + id).find('img');
+
+                        reader.onload = function (e) {
+                            img.attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(file);
+                    }
+                },
+                onBeforeUpload: function (id) {
+                    // about tho start uploading a file
+                    ui_add_log('Starting the upload of #' + id);
+                    ui_multi_update_file_progress(id, 0, '', true);
+                    ui_multi_update_file_status(id, 'uploading', 'Uploading...');
+                },
+                onUploadProgress: function (id, percent) {
+                    // Updating file progress
+                    ui_multi_update_file_progress(id, percent);
+                },
+                onUploadSuccess: function (id, data) {
+                    // A file was successfully uploaded
+                    ui_add_log('Server Response for file #' + id + ': ' + JSON.stringify(data));
+                    ui_add_log('Upload of file #' + id + ' COMPLETED', 'success');
+                    ui_multi_update_file_status(id, 'success', 'Upload Complete');
+                    ui_multi_update_file_progress(id, 100, 'success', false);
+                    convertReadings(data.value);
+                },
+                onUploadError: function (id, xhr, status, message) {
+                    ui_multi_update_file_status(id, 'danger', message);
+                    ui_multi_update_file_progress(id, 0, 'danger', false);
+                },
+                onFallbackMode: function () {
+                    // When the browser doesn't support this plugin :(
+                    ui_add_log('Plugin cant be used here, running Fallback callback', 'danger');
+                },
+                onFileSizeError: function (file) {
+                    ui_add_log('File \'' + file.name + '\' cannot be added: size excess limit', 'danger');
+                },
+                onFileTypeError: function (file) {
+                    ui_add_log('File \'' + file.name + '\' cannot be added: must be an image (type error)', 'danger');
+                },
+                onFileExtError: function (file) {
+                    ui_add_log('File \'' + file.name + '\' cannot be added: must be an image (extension error)', 'danger');
+                }
+
+            });
+
+        });
+    </script>
+}

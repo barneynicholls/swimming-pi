@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2020
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "swimming-pi", "swimming-pi\swimming-pi.pyproj", "{FFCBAA76-F6AA-4957-B4CC-19C8F6B345AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "swimming-pi-web", "swimming-pi-web\swimming-pi-web.csproj", "{7DCD36D9-B458-4E06-9312-4B7FCD34B820}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FFCBAA76-F6AA-4957-B4CC-19C8F6B345AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFCBAA76-F6AA-4957-B4CC-19C8F6B345AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCD36D9-B458-4E06-9312-4B7FCD34B820}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DCD36D9-B458-4E06-9312-4B7FCD34B820}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DCD36D9-B458-4E06-9312-4B7FCD34B820}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DCD36D9-B458-4E06-9312-4B7FCD34B820}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,6 +9,9 @@ __pycache__/
 *.so
 *.suo
 .suo
+.vs/
+bin/obj/
+packages/
 
 # Distribution / packaging
 .Python
@@ -107,3 +110,11 @@ ENV/
 /swimming-pi/swimming-pi.pyproj.user
 /swimming-pi/sensor_log.txt
 sensor_log.txt
+/packages
+/.vs/config
+/.vs/swimming-pi/v15/Server/sqlite3
+/swimming-pi-map/bin
+/swimming-pi-map/obj/Debug
+/swimming-pi-map/Web.config
+/swimming-pi-web/obj
+/swimming-pi-web/bin/Debug/netcoreapp2.0
