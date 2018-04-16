@@ -66,6 +66,23 @@
 
         var map, heatmap;
 
+        var gradient = [
+            'rgba(0, 255, 255, 0)',
+            'rgba(0, 255, 255, 1)',
+            'rgba(0, 191, 255, 1)',
+            'rgba(0, 127, 255, 1)',
+            'rgba(0, 63, 255, 1)',
+            'rgba(0, 0, 255, 1)',
+            'rgba(0, 0, 223, 1)',
+            'rgba(0, 0, 191, 1)',
+            'rgba(0, 0, 159, 1)',
+            'rgba(0, 0, 127, 1)',
+            'rgba(63, 0, 91, 1)',
+            'rgba(127, 0, 63, 1)',
+            'rgba(191, 0, 31, 1)',
+            'rgba(255, 0, 0, 1)'
+        ];
+
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 13,
@@ -74,15 +91,12 @@
             });
 
             heatmap = new google.maps.visualization.HeatmapLayer({
-                data: getPoints(),
+                data: [],
                 map: map
             });
         }
 
-
         function convertReadings(data) {
-
-            // changeGradient();
 
             var bounds = new google.maps.LatLngBounds();
 
@@ -92,50 +106,20 @@
                 bounds.extend(loc);
 
                 var cityCircle = new google.maps.Circle({
-                    strokeColor: GetGradientColour(x.speedWeight),
+                    strokeColor: gradient[x.speedWeight],
                     strokeOpacity: 0.2,
                     strokeWeight: 1,
-                    fillColor: GetGradientColour(x.speedWeight),
+                    fillColor: gradient[x.speedWeight],
                     fillOpacity: 0.8,
                     map: map,
                     center: new google.maps.LatLng(x.lat, x.lon),
-                    radius:  x.speedWeight 
+                    radius:  10
                 });
 
             })
 
-            //var points = data.map(x => {
-            //    //var loc = new google.maps.LatLng(x.lat, x.lon);
-            //    //bounds.extend(loc);
-            //   /// return { location: loc, weight: x.speedWeight }
-
-
-            //});
-
-            //heatmap.setData(points);
-
             map.fitBounds(bounds);
             map.panToBounds(bounds);
-        }
-
-        function GetGradientColour(weight) {
-            var gradient = [
-                'rgba(0, 255, 255, 0)',
-                'rgba(0, 255, 255, 1)',
-                'rgba(0, 191, 255, 1)',
-                'rgba(0, 127, 255, 1)',
-                'rgba(0, 63, 255, 1)',
-                'rgba(0, 0, 255, 1)',
-                'rgba(0, 0, 223, 1)',
-                'rgba(0, 0, 191, 1)',
-                'rgba(0, 0, 159, 1)',
-                'rgba(0, 0, 127, 1)',
-                'rgba(63, 0, 91, 1)',
-                'rgba(127, 0, 63, 1)',
-                'rgba(191, 0, 31, 1)',
-                'rgba(255, 0, 0, 1)'
-            ]
-            return gradient[weight];
         }
 
 
@@ -169,11 +153,6 @@
 
         function changeOpacity() {
             heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-        }
-
-        // Heatmap data: 500 Points
-        function getPoints() {
-            return [];
         }
     </script>
     <script async defer
