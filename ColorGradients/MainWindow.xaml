@@ -1,0 +1,14 @@
+﻿<Window x:Class="ColorGradients.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ColorGradients"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Rectangle x:Name="colorpanel"  HorizontalAlignment="Left" Height="100" Margin="62,64,0,0" Stroke="Black" VerticalAlignment="Top" Width="270"/>
+        <Slider HorizontalAlignment="Left" Height="29" Margin="62,180,0,0" VerticalAlignment="Top" Width="270" Maximum="100" ValueChanged="Slider_ValueChanged"/>
+
+    </Grid>
+</Window>

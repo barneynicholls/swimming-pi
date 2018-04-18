@@ -118,3 +118,5 @@ sensor_log.txt
 /swimming-pi-map/Web.config
 /swimming-pi-web/obj
 /swimming-pi-web/bin/Debug/netcoreapp2.0
+/ColorGradients/bin/Debug
+/ColorGradients/obj/Debug
