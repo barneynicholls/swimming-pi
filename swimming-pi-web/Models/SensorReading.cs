@@ -15,7 +15,7 @@ namespace swimming_pi_web.Models
         public decimal Temp { get; set; }
         public decimal Speed { get; set; }
 
-        public decimal SpeedWeight { get; set; }
+        public string SpeedColor { get; set; }
 
         public string TempColor { get; set; }
     }

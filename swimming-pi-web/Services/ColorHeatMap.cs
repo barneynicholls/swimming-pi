@@ -1,10 +1,9 @@
-﻿using System.Windows.Media;// for WPF
-                           // for WindowsForms using System.Drawing
-using System;
+﻿using System;
 using System.Collections.Generic;
-namespace ColorGradients
-{
+using System.Drawing;
 
+namespace swimming_pi_web.Services
+{
     public class ColorHeatMap
     {
         public ColorHeatMap()
@@ -24,11 +23,19 @@ namespace ColorGradients
             Color.FromArgb(Alpha, 0, 0xFF, 0xFF) ,//Cyan
             Color.FromArgb(Alpha, 0, 0xFF, 0) ,//Green
             Color.FromArgb(Alpha, 0xFF, 0xFF, 0) ,//Yellow
-            Color.FromArgb(Alpha, 0xFF, 0, 0) ,//Red
-            Color.FromArgb(Alpha, 0xFF, 0xFF, 0xFF) // White
+            Color.FromArgb(Alpha, 0xFF, 0, 0) //Red
+          //  ,Color.FromArgb(Alpha, 0xFF, 0xFF, 0xFF) // White
         });
         }
-        public Color GetColorForValue(double val, double maxVal)
+
+        public Color GetColorForValue(decimal val, decimal maxVal)
+        {
+            return GetColorForValue(
+                Convert.ToDouble(val),
+                Convert.ToDouble(maxVal));
+        }
+
+            public Color GetColorForValue(double val, double maxVal)
         {
             double valPerc = val / maxVal;// value%
             double colorPerc = 1d / (ColorsOfMap.Count - 1);// % of each block of color. the last is the "100% Color"
@@ -38,7 +45,6 @@ namespace ColorGradients
             double percOfColor = valPercResidual / colorPerc;// % of color of this block that will be filled
 
             Color cTarget = ColorsOfMap[blockIdx];
-
             Color cNext = val == maxVal ? cTarget : cNext = ColorsOfMap[blockIdx + 1];
 
             var deltaR = cNext.R - cTarget.R;

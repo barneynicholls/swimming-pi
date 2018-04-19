@@ -41,18 +41,13 @@ namespace swimming_pi_web.Services
 
         private static IEnumerable<SensorReading> NormaliseData(IEnumerable<SensorReading> readings)
         {
-            const int rounding = 7;
-
-
-            // group into 14 bands
-            const int bands = 14;
+            const int rounding = 5;
 
             var speedMin = readings.Min(r => r.Speed);
-            var speedBand = (readings.Max(r => r.Speed) - speedMin) / bands;
+            var speedRange = readings.Max(r => r.Speed) - speedMin;
 
-            var tempMax = readings.Max(r => r.Temp);
             var tempMin = readings.Min(r => r.Temp);
-            var tempRange = tempMax - tempMin;
+            var tempRange = readings.Max(r => r.Temp) - tempMin;
 
             ColorHeatMap chm = new ColorHeatMap();
 
@@ -65,8 +60,8 @@ namespace swimming_pi_web.Services
                                         Temp = g.Average(x => x.Temp),
                                         Speed = g.Average(x => x.Speed),
                                         Time = g.Min(x => x.Time),
-                                        SpeedWeight = Math.Floor((g.Average(x => x.Speed) - speedMin) / speedBand),
-                                        TempColor = chm.GetColorForValue( g.Average(x => x.Temp) - tempMin, tempRange).ToHexString()
+                                        SpeedColor = chm.GetColorForValue(g.Average(x => x.Speed) - speedMin, speedRange).ToHexString(),
+                                        TempColor = chm.GetColorForValue(g.Average(x => x.Temp) - tempMin, tempRange).ToHexString()
                                     };
 
             return groupedToLocation;
