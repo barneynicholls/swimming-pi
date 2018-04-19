@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace swimming_pi_web.Services
 {
@@ -51,6 +50,11 @@ namespace swimming_pi_web.Services
             var speedMin = readings.Min(r => r.Speed);
             var speedBand = (readings.Max(r => r.Speed) - speedMin) / bands;
 
+            var tempMax = readings.Max(r => r.Temp);
+            var tempMin = readings.Min(r => r.Temp);
+            var tempRange = tempMax - tempMin;
+
+            ColorHeatMap chm = new ColorHeatMap();
 
             var groupedToLocation = from r in readings
                                     group r by new { Lat = Math.Round(r.Lat, rounding), Lon = Math.Round(r.Lon, rounding) } into g
@@ -61,7 +65,8 @@ namespace swimming_pi_web.Services
                                         Temp = g.Average(x => x.Temp),
                                         Speed = g.Average(x => x.Speed),
                                         Time = g.Min(x => x.Time),
-                                        SpeedWeight = Math.Floor( (g.Average(x => x.Speed) - speedMin) / speedBand)
+                                        SpeedWeight = Math.Floor((g.Average(x => x.Speed) - speedMin) / speedBand),
+                                        TempColor = chm.GetColorForValue( g.Average(x => x.Temp) - tempMin, tempRange).ToHexString()
                                     };
 
             return groupedToLocation;
