@@ -13,8 +13,36 @@ namespace swimming_pi_web.Services
         public ColorHeatMap(byte alpha)
         {
             this.Alpha = alpha;
-            initColorsBlocks();
+            //initColorsBlocks();
+            SeaTemperatureColors();
         }
+
+        private void SeaTemperatureColors()
+        {
+            var array = new Color[]
+            {
+                Color.FromArgb(Alpha,0,51,255),
+                Color.FromArgb(Alpha,0,204,255),
+                Color.FromArgb(Alpha,0,255,255),
+                Color.FromArgb(Alpha,102,255,204),
+                Color.FromArgb(Alpha,0,255,51),
+                Color.FromArgb(Alpha,0,204,51),
+                Color.FromArgb(Alpha,153,255,102),
+                Color.FromArgb(Alpha,255,255,102),
+                Color.FromArgb(Alpha,255,255,0),
+                Color.FromArgb(Alpha,255,153,0),
+                Color.FromArgb(Alpha,255,102,0),
+                Color.FromArgb(Alpha,255,51,0),
+                Color.FromArgb(Alpha,204,0,0),
+                Color.FromArgb(Alpha,153,0,0),
+                Color.FromArgb(Alpha,153,0,153),
+                Color.FromArgb(Alpha,255,0,255)
+            };
+
+            ColorsOfMap.AddRange(array);
+        }
+
+
         private void initColorsBlocks()
         {
             ColorsOfMap.AddRange(new Color[]{
@@ -23,8 +51,8 @@ namespace swimming_pi_web.Services
             Color.FromArgb(Alpha, 0, 0xFF, 0xFF) ,//Cyan
             Color.FromArgb(Alpha, 0, 0xFF, 0) ,//Green
             Color.FromArgb(Alpha, 0xFF, 0xFF, 0) ,//Yellow
-            Color.FromArgb(Alpha, 0xFF, 0, 0) //Red
-          //  ,Color.FromArgb(Alpha, 0xFF, 0xFF, 0xFF) // White
+            Color.FromArgb(Alpha, 0xFF, 0, 0), //Red
+            Color.FromArgb(Alpha, 0xFF, 0xFF, 0xFF) // White
         });
         }
 
@@ -35,7 +63,7 @@ namespace swimming_pi_web.Services
                 Convert.ToDouble(maxVal));
         }
 
-            public Color GetColorForValue(double val, double maxVal)
+        public Color GetColorForValue(double val, double maxVal)
         {
             double valPerc = val / maxVal;// value%
             double colorPerc = 1d / (ColorsOfMap.Count - 1);// % of each block of color. the last is the "100% Color"
