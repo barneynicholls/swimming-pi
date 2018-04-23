@@ -8,7 +8,8 @@ namespace swimming_pi_web.Services
     {
         public ColorHeatMap()
         {
-            initColorsBlocks();
+            //initColorsBlocks();
+            SeaTemperatureColors();
         }
         public ColorHeatMap(byte alpha)
         {
@@ -21,6 +22,7 @@ namespace swimming_pi_web.Services
         {
             var array = new Color[]
             {
+                Color.FromArgb(Alpha, 0, 0, 0),
                 Color.FromArgb(Alpha,0,51,255),
                 Color.FromArgb(Alpha,0,204,255),
                 Color.FromArgb(Alpha,0,255,255),
@@ -46,14 +48,14 @@ namespace swimming_pi_web.Services
         private void initColorsBlocks()
         {
             ColorsOfMap.AddRange(new Color[]{
-            Color.FromArgb(Alpha, 0, 0, 0) ,//Black
-            Color.FromArgb(Alpha, 0, 0, 0xFF) ,//Blue
-            Color.FromArgb(Alpha, 0, 0xFF, 0xFF) ,//Cyan
-            Color.FromArgb(Alpha, 0, 0xFF, 0) ,//Green
-            Color.FromArgb(Alpha, 0xFF, 0xFF, 0) ,//Yellow
-            Color.FromArgb(Alpha, 0xFF, 0, 0), //Red
-            Color.FromArgb(Alpha, 0xFF, 0xFF, 0xFF) // White
-        });
+                Color.FromArgb(Alpha, 0, 0, 0) ,//Black
+                Color.FromArgb(Alpha, 0, 0, 0xFF) ,//Blue
+                Color.FromArgb(Alpha, 0, 0xFF, 0xFF) ,//Cyan
+                Color.FromArgb(Alpha, 0, 0xFF, 0) ,//Green
+                Color.FromArgb(Alpha, 0xFF, 0xFF, 0) ,//Yellow
+                Color.FromArgb(Alpha, 0xFF, 0, 0), //Red
+                Color.FromArgb(Alpha, 0xFF, 0xFF, 0xFF) // White
+            });
         }
 
         public Color GetColorForValue(decimal val, decimal maxVal)
