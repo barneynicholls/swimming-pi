@@ -7,7 +7,7 @@ from displays import ssd1306
 
 
 def main():
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.ERROR)
     root = logging.getLogger()
     # application log
     h = logging.handlers.RotatingFileHandler('swimming-pi.log', 'a', (1024 * 1024 * 2), 10)
@@ -16,17 +16,29 @@ def main():
     root.addHandler(h)
     logging.info('Started')
 
-    #sensor = ds18b20()
-    #gps_sensor = gyneo6mv2()
+    sensor = ds18b20()
+    gps_sensor = gyneo6mv2()
     display = ssd1306()
-
-    showpos = False;
 
     while True:
 
-        #temp = sensor.read()
+        temp = sensor.read()
+        lat, lon, speed, curr_time = gps_sensor.read()
 
-        display.update("one","two","three","two")
+        display.update(
+            "Swimming PI :)",
+            strftime("%H:%M:%S", gmtime()),
+            "TEMP:{: 4.2f}c".format(temp),
+            "LT:{:3.3f}".format(lat),
+            "LN:{:3.3f}".format(lon),
+            "ALT:{:3.3f}m".format(0),
+            "SPD:{:3.3f}kmh".format(speed)
+            )
+
+        if lat != 0:
+            with open('sensor_log.txt', 'a') as the_file:
+                line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
+                the_file.write(line)
         
         #display.lcd_line1("{:}{: 7.2f}c".format(strftime("%H:%M:%S", gmtime()) , temp))
 

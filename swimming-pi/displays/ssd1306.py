@@ -77,7 +77,7 @@ class ssd1306(object):
     def __init__(self):
         self.init()
 
-    def update(self, line1, line2, line3 ,line4):
+    def update(self, line1, line2A, line2B ,line3A, line3B, line4A, line4B):
         # Draw a black filled box to clear the image.
         self.draw.rectangle((0,0,self.width,self.height), outline=0, fill=0)
 
@@ -86,9 +86,14 @@ class ssd1306(object):
         self.top = self.padding
 
         self.draw.text((x, self.top),       line1,  font=self.font, fill=255)
-        self.draw.text((x, self.top+8),     line2, font=self.font, fill=255)
-        self.draw.text((x, self.top+16),    line3,  font=self.font, fill=255)
-        self.draw.text((x, self.top+25),    line4,  font=self.font, fill=255)
+        self.draw.text((x, self.top+8),     line2A, font=self.font, fill=255)
+        self.draw.text((x, self.top+16),    line3A,  font=self.font, fill=255)
+        self.draw.text((x, self.top+25),    line4A,  font=self.font, fill=255)
+
+        x=64
+        self.draw.text((x, self.top+8),     line2B, font=self.font, fill=255)
+        self.draw.text((x, self.top+16),    line3B,  font=self.font, fill=255)
+        self.draw.text((x, self.top+25),    line4B,  font=self.font, fill=255)
 
         # Display image.
         self.disp.image(self.image)
