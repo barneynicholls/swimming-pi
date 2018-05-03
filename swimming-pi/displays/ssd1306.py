@@ -44,7 +44,7 @@ class ssd1306(object):
 
     def init(self):
         # 128x32 display with hardware I2C:
-        self.disp = Adafruit_SSD1306.SSD1306_128_32(rst=RST)
+        self.disp = Adafruit_SSD1306.SSD1306_128_32(rst=self.RST)
 
         # Initialize library.
         self.disp.begin()
