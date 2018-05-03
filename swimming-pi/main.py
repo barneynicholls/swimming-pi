@@ -24,7 +24,7 @@ def main():
 
     while True:
 
-        temp = sensor.read()
+        #temp = sensor.read()
 
         display.update("one","two","three","two")
         
