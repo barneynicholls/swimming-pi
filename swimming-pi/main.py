@@ -16,8 +16,8 @@ def main():
     root.addHandler(h)
     logging.info('Started')
 
-    sensor = ds18b20()
-    gps_sensor = gyneo6mv2()
+    #sensor = ds18b20()
+    #gps_sensor = gyneo6mv2()
     display = ssd1306()
 
     showpos = False;
