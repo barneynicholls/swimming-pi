@@ -74,6 +74,10 @@ class ssd1306(object):
         # Load default font.
         self.font = ImageFont.load_default()
 
+        # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as this python script!
+        # Some nice fonts to try: http://www.dafont.com/bitmap.php
+        # font = ImageFont.truetype('Minecraftia.ttf', 8)
+
     def __init__(self):
         self.init()
 

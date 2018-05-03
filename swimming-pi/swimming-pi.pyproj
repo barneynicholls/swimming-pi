@@ -64,6 +64,9 @@
     <Folder Include="sensors\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="displays\BLADRMF_.TTF" />
+    <Content Include="displays\Minecraftia-Regular.ttf" />
+    <Content Include="displays\swim.ttf" />
     <Content Include="sensors\ds18b20_sample_output.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
