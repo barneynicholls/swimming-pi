@@ -24,6 +24,12 @@
     <Compile Include="displays\i2c1602.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="displays\Adadruit_SSD1306.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="displays\ssd1306.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="displays\__init__.py">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +37,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mocks\gpsmocks.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="mocks\adafruitmocks.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="mocks\rpidevmocks.py">
