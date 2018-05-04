@@ -72,7 +72,8 @@ class ssd1306(object):
         self.bottom = self.height-self.padding
 
         # Load default font.
-        self.font = ImageFont.load_default()
+        #self.font = ImageFont.load_default()
+        self.font =ImageFont.truetype('fonts/Minecraftia-Regular.ttf', 8)
 
         # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as this python script!
         # Some nice fonts to try: http://www.dafont.com/bitmap.php

@@ -61,12 +61,13 @@
   <ItemGroup>
     <Folder Include="displays\" />
     <Folder Include="mocks\" />
+    <Folder Include="fonts\" />
     <Folder Include="sensors\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="displays\BLADRMF_.TTF" />
-    <Content Include="displays\Minecraftia-Regular.ttf" />
-    <Content Include="displays\swim.ttf" />
+    <Content Include="fonts\BLADRMF_.TTF" />
+    <Content Include="fonts\Minecraftia-Regular.ttf" />
+    <Content Include="fonts\swim.ttf" />
     <Content Include="sensors\ds18b20_sample_output.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

@@ -22,24 +22,35 @@ def main():
 
     while True:
 
-        temp = sensor.read()
-        lat, lon, speed, curr_time = gps_sensor.read()
+        try:
+            temp = sensor.read()
+            lat, lon, speed, curr_time = gps_sensor.read()
+        except:
+            logging.error('ERROR sensor read')
+            pass
 
-        display.update(
-            "Swimming PI :)",
-            strftime("%H:%M:%S", gmtime()),
-            "TEMP:{: 4.2f}c".format(temp),
-            "LT:{:3.3f}".format(lat),
-            "LN:{:3.3f}".format(lon),
-            "ALT:{:3.3f}m".format(0),
-            "SPD:{:3.3f}kmh".format(speed)
-            )
+        try:
+            display.update(
+                "Swimming PI :)",
+                strftime("%H:%M:%S", gmtime()),
+                "TEMP:{: 4.2f}c".format(temp),
+                "LT:{:3.3f}".format(lat),
+                "LN:{:3.3f}".format(lon),
+                "ALT:{:3.3f}m".format(0),
+                "SPD:{:3.3f}kmh".format(speed)
+                )
+        except:
+            logging.error('ERROR display update')
+            pass
 
-        if lat != 0:
-            with open('sensor_log.txt', 'a') as the_file:
-                line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
-                the_file.write(line)
-        
+        try:
+            if lat != 0:
+                with open('sensor_log.txt', 'a') as the_file:
+                    line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
+                    the_file.write(line)
+        except:
+            logging.error('ERROR log write')
+            pass
         #display.lcd_line1("{:}{: 7.2f}c".format(strftime("%H:%M:%S", gmtime()) , temp))
 
         #lat, lon, speed, curr_time = gps_sensor.read()
