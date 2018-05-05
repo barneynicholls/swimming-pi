@@ -34,6 +34,8 @@ def main():
             temp = sensor.read()
             if temp is not 0:
                 prev_temp = temp
+        except KeyboardInterrupt:
+            quit()
         except:
             logging.error('ERROR temp read')
             exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -45,6 +47,8 @@ def main():
             report = gps_sensor.read()
             if report.lat is not 0:
                 prev_report = report;
+        except KeyboardInterrupt:
+            quit()
         except:
             logging.error('ERROR gps read')
             exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -66,6 +70,8 @@ def main():
                 "ALT:{:3.1f}m".format(report.alt),
                 "SPD:{:3.1f}kmh".format(report.speed)
                 )
+        except KeyboardInterrupt:
+            quit()
         except:
             logging.error('ERROR display update')
             exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -78,6 +84,8 @@ def main():
                 with open('sensor_log.txt', 'a') as the_file:
                     line = '%s,%s,%s,%s,%s,%s\n' % (report.time, temp, report.lat, report.lon, report.speed, report.alt)
                     the_file.write(line)
+        except KeyboardInterrupt:
+            quit()
         except:
             logging.error('ERROR log write')
             exc_type, exc_value, exc_traceback = sys.exc_info()
