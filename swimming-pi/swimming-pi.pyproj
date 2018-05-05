@@ -51,6 +51,9 @@
     <Compile Include="sensors\ds18b20.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="sensors\gpsReport.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="sensors\gyneo6mv2.py">
       <SubType>Code</SubType>
     </Compile>

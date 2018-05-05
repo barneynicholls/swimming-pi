@@ -7,6 +7,7 @@ except ImportError:
 import logging
 import time
 from time import gmtime
+from sensors import gpsReport
 
 class gyneo6mv2(object):
 
@@ -20,15 +21,25 @@ class gyneo6mv2(object):
         self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
     
     def read(self):
-        result = (0.0,0.0,0.0, datetime.datetime.utcnow().isoformat())
+        gpsReport = gpsReport()
+
         try:
             report = self.session.next();
             if report is not None and report['class'] == 'TPV':
-                return (report.lat, report.lon, report.speed * gps.MPS_TO_KPH, report.time)
-            return result
+                if 'lat' in report:
+                    gpsReport.lat = report.lat
+                if 'lon' in report:
+                    gpsReport.lon = report.lon
+                if 'speed' in report:
+                    gpsReport.speed = report.speed * gps.MPS_TO_KPH
+                if 'time' in report:
+                    gpsReport.time = report.time
+                if 'alt' in report:
+                    gpsReport.alt = report.alt
+            return gpsReport
         except Exception as e:
             logging.error(str(e))
-            return result
+            return gpsReport
 
     #def read(self):
     #    result = (0,0)

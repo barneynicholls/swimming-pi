@@ -5,7 +5,7 @@ import logging
 import logging.handlers
 import time
 from time import gmtime, strftime
-from sensors import ds18b20, gyneo6mv2
+from sensors import ds18b20, gyneo6mv2, gpsReport
 from displays import ssd1306
 
 
@@ -26,10 +26,6 @@ def main():
     while True:
 
         temp = 0
-        lat = 0
-        lon = 0
-        speed = 0
-        curr_time = ""
 
         try:
             temp = sensor.read()
@@ -41,7 +37,7 @@ def main():
             pass
 
         try:
-            lat, lon, speed, curr_time = gps_sensor.read()
+            report = gps_sensor.read()
         except:
             logging.error('ERROR gps read')
             exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -54,10 +50,10 @@ def main():
                 "Swimming PI :)",
                 strftime("%H:%M:%S", gmtime()),
                 "TEMP:{: 4.2f}c".format(temp),
-                "LT:{:3.3f}".format(lat),
-                "LN:{:3.3f}".format(lon),
-                "ALT:{:3.1f}m".format(0),
-                "SPD:{:3.1f}kmh".format(speed)
+                "LT:{:3.3f}".format(report.lat),
+                "LN:{:3.3f}".format(report.lon),
+                "ALT:{:3.1f}m".format(report.alt),
+                "SPD:{:3.1f}kmh".format(report.speed)
                 )
         except:
             logging.error('ERROR display update')
@@ -67,9 +63,9 @@ def main():
             pass
 
         try:
-            if lat != 0:
+            if report.lat != 0:
                 with open('sensor_log.txt', 'a') as the_file:
-                    line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
+                    line = '%s,%s,%s,%s,%s,%s\n' % (report.time, temp, report.lat, report.lon, report.speed, report.alt)
                     the_file.write(line)
         except:
             logging.error('ERROR log write')
