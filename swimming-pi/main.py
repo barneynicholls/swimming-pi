@@ -6,7 +6,7 @@ import logging.handlers
 import time
 from time import gmtime, strftime
 from sensors import ds18b20, gyneo6mv2, gpsReport
-#from displays import ssd1306
+from displays import ssd1306
 
 
 def main():
