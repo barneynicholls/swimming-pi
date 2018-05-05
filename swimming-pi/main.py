@@ -1,3 +1,6 @@
+import os
+import sys
+import traceback
 import logging
 import logging.handlers
 import time
@@ -22,11 +25,28 @@ def main():
 
     while True:
 
+        temp = 0
+        lat = 0
+        lon = 0
+        speed = 0
+        curr_time = ""
+
         try:
             temp = sensor.read()
+        except:
+            logging.error('ERROR temp read')
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            logging.error(lines)
+            pass
+
+        try:
             lat, lon, speed, curr_time = gps_sensor.read()
         except:
-            logging.error('ERROR sensor read')
+            logging.error('ERROR gps read')
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            logging.error(lines)
             pass
 
         try:
@@ -36,11 +56,14 @@ def main():
                 "TEMP:{: 4.2f}c".format(temp),
                 "LT:{:3.3f}".format(lat),
                 "LN:{:3.3f}".format(lon),
-                "ALT:{:3.3f}m".format(0),
-                "SPD:{:3.3f}kmh".format(speed)
+                "ALT:{:3.1f}m".format(0),
+                "SPD:{:3.1f}kmh".format(speed)
                 )
         except:
             logging.error('ERROR display update')
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            logging.error(lines)
             pass
 
         try:
@@ -50,20 +73,10 @@ def main():
                     the_file.write(line)
         except:
             logging.error('ERROR log write')
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            logging.error(lines)
             pass
-        #display.lcd_line1("{:}{: 7.2f}c".format(strftime("%H:%M:%S", gmtime()) , temp))
-
-        #lat, lon, speed, curr_time = gps_sensor.read()
-
-        #if lat != 0:
-        #    if showpos:
-        #        display.lcd_line2("{:3.3f}, {:3.3f}".format(lat,lon))
-        #    else:
-        #        display.lcd_line2("{:3.3f}kmh".format(speed))
-        #    showpos = not showpos
-        #    with open('sensor_log.txt', 'a') as the_file:
-        #        line = '%s,%s,%s,%s,%s\n' % (curr_time, temp, lat, lon, speed)
-        #        the_file.write(line)
 
     logging.info('Finished')
 
