@@ -4,4 +4,3 @@ from mocks.rpidevmocks import MockGPIO
 from mocks.rpidevmocks import MockSPI
 from mocks.gpsmocks import MockGPS
 from .adafruitmocks import *
-
