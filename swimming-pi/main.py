@@ -23,13 +23,17 @@ def main():
     gps_sensor = gyneo6mv2()
     display = ssd1306()
 
-    while True:
+    report = gpsReport.gpsReport()
+    prev_report = gpsReport.gpsReport()
+    temp = 0
+    prev_temp = 0
 
-        temp = 0
-        report = gpsReport.gpsReport()
+    while True:
 
         try:
             temp = sensor.read()
+            if temp is not 0:
+                prev_temp = temp
         except:
             logging.error('ERROR temp read')
             exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -39,6 +43,8 @@ def main():
 
         try:
             report = gps_sensor.read()
+            if report.lat is not 0:
+                prev_report = report;
         except:
             logging.error('ERROR gps read')
             exc_type, exc_value, exc_traceback = sys.exc_info()
@@ -47,6 +53,10 @@ def main():
             pass
 
         try:
+            if temp is 0 and prev_temp is not 0:
+                temp = prev_temp
+            if report.lat is 0 and prev_report.lat is not 0:
+                report = prev_report
             display.update(
                 "Swimming PI :)",
                 strftime("%H:%M:%S", gmtime()),
