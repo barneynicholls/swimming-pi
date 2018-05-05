@@ -26,7 +26,7 @@ def main():
     while True:
 
         temp = 0
-        report = gpsReport()
+        report = gpsReport.gpsReport()
 
         try:
             temp = sensor.read()
