@@ -3,4 +3,6 @@ from mocks.rpidevmocks import Mock_smbusModule
 from mocks.rpidevmocks import MockGPIO
 from mocks.rpidevmocks import MockSPI
 from mocks.gpsmocks import MockGPS
-from .adafruitmocks import *
+from mocks.adafruitmocks import Mock_Adafruit_GPIO_SPI
+from mocks.adafruitmocks import Mock_Adafruit_GPIO
+from mocks.adafruitmocks import Mock_Adafruit_SSD1306

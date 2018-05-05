@@ -8,3 +8,5 @@ class Mock_Adafruit_GPIO(object):
     SPI = Mock_Adafruit_GPIO_SPI
 
 class Mock_Adafruit_SSD1306(object):
+      def __init__(self):
+        self.name = "Mock Adafruit SSD1306"

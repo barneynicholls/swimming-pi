@@ -6,7 +6,7 @@ import logging.handlers
 import time
 from time import gmtime, strftime
 from sensors import ds18b20, gyneo6mv2, gpsReport
-from displays import ssd1306
+#from displays import ssd1306
 
 
 def main():
@@ -21,7 +21,7 @@ def main():
 
     sensor = ds18b20()
     gps_sensor = gyneo6mv2()
-    display = ssd1306()
+    # display = ssd1306()
 
     while True:
 
@@ -46,22 +46,22 @@ def main():
             logging.error(lines)
             pass
 
-        try:
-            display.update(
-                "Swimming PI :)",
-                strftime("%H:%M:%S", gmtime()),
-                "TEMP:{: 4.2f}c".format(temp),
-                "LT:{:3.3f}".format(report.lat),
-                "LN:{:3.3f}".format(report.lon),
-                "ALT:{:3.1f}m".format(report.alt),
-                "SPD:{:3.1f}kmh".format(report.speed)
-                )
-        except:
-            logging.error('ERROR display update')
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
-            logging.error(lines)
-            pass
+        #try:
+        #    display.update(
+        #        "Swimming PI :)",
+        #        strftime("%H:%M:%S", gmtime()),
+        #        "TEMP:{: 4.2f}c".format(temp),
+        #        "LT:{:3.3f}".format(report.lat),
+        #        "LN:{:3.3f}".format(report.lon),
+        #        "ALT:{:3.1f}m".format(report.alt),
+        #        "SPD:{:3.1f}kmh".format(report.speed)
+        #        )
+        #except:
+        #    logging.error('ERROR display update')
+        #    exc_type, exc_value, exc_traceback = sys.exc_info()
+        #    lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+        #    logging.error(lines)
+        #    pass
 
         try:
             if report.lat != 0:

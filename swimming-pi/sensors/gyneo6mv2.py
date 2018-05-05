@@ -21,25 +21,26 @@ class gyneo6mv2(object):
         self.session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
     
     def read(self):
-        gpsReport = gpsReport()
+
+        result = gpsReport.gpsReport()
 
         try:
             report = self.session.next();
             if report is not None and report['class'] == 'TPV':
                 if 'lat' in report:
-                    gpsReport.lat = report.lat
+                    result.lat = report.lat
                 if 'lon' in report:
-                    gpsReport.lon = report.lon
+                    result.lon = report.lon
                 if 'speed' in report:
-                    gpsReport.speed = report.speed * gps.MPS_TO_KPH
+                    result.speed = report.speed * gps.MPS_TO_KPH
                 if 'time' in report:
-                    gpsReport.time = report.time
+                    result.time = report.time
                 if 'alt' in report:
-                    gpsReport.alt = report.alt
-            return gpsReport
+                    result.alt = report.alt
+            return result
         except Exception as e:
             logging.error(str(e))
-            return gpsReport
+            return result
 
     #def read(self):
     #    result = (0,0)
